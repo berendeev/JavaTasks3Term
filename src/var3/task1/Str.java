@@ -1,4 +1,4 @@
-package var2.task1;
+package var3.task1;
 
 import java.util.ArrayList;
 import java.util.List;
