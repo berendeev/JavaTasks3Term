@@ -7,17 +7,17 @@ import java.util.Scanner;
  */
 public class Main {
 	public static void main(String[] args) {
-		System.out.println("input amount of string");
-		Scanner scanner = new Scanner(System.in);
-		int count = scanner.nextInt();
+		System.out.println("input amount of string");	// Приглашение на ввод
+		Scanner scanner = new Scanner(System.in);	// для считывания с консоли
+		int count = scanner.nextInt();	// читаем кол-во строк
 
-		Str str = new Str();
+		Str str = new Str();	// создаем класс
 
-		for (int i = 0; i < count; i++) {
-			System.out.println("input " + (i + 1) + " string");
-			str.add(scanner.next());
+		for (int i = 0; i < count; i++) {	// для всех строк введенных с клавиатуры
+			System.out.println("input " + (i + 1) + " string");	// вывод номер строки
+			str.add(scanner.next());	// добавляем строку в обьект класса
 		}
 
-		str.print();
+		str.print();	// вызывает метод принт
 	}
 }

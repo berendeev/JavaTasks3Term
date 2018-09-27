@@ -59,7 +59,7 @@ public class Main {
 		double perimeters = 0;
 		double areas = 0;
 		for (Quadrangle quadrangle : quadrangles) {    // общие периметр и площадь
-			perimeters += quadrangle.getPerimetr();
+			perimeters += quadrangle.getPerimeter();
 			areas += quadrangle.getArea();
 		}
 		double averagePerimeter = perimeters / quadrangles.size();    // средний перимтр
