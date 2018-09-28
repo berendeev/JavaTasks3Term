@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-	public static void main(String[] args) { // не проверял вообще
+	public static void main(String[] args) { // Проверь сам, для меня слишком вводить 4 координаты каждый раз. Найдешь ошибку напищи мне. Походу преподу тоже лень тестить это
 		Scanner scanner = new Scanner(System.in);
 
 		System.out.println("input count of quadrangles");
@@ -81,12 +81,12 @@ public class Main {
 
 	}
 
-	public static Point2D getPoint() {
-		Scanner scanner = new Scanner(System.in);
+	public static Point2D getPoint() {		// вынес в функцию получения координат с консоли, т.к. дуюлировать код для каждой точки перебор
+		Scanner scanner = new Scanner(System.in);	// создает сканер
 		System.out.println("x = ");
-		double x = scanner.nextDouble();
+		double x = scanner.nextDouble(); // ввод координаты x
 		System.out.println("y = ");
-		double y = scanner.nextDouble();
-		return new Point2D(x, y);
+		double y = scanner.nextDouble(); // ввод координаты y
+		return new Point2D(x, y); // создает точку по полученным координатам и возвращает ее.
 	}
 }
