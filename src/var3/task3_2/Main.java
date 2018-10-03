@@ -20,7 +20,7 @@ public class Main {
 
 			List<Quadrangle> quadrangles = new ArrayList<>();
 			for (int i = 0; i < N; i++) {    //ввод 4угольнтков
-				System.out.println((N + 1) + "quadrangle");
+				System.out.println((i + 1) + " quadrangle");
 
 				System.out.println("Left top point");
 				Point2D leftTop = getPoint();
@@ -40,10 +40,11 @@ public class Main {
 
 			System.out.println("input count of squares");
 			int M = scanner.nextInt();
+			scanner.nextLine();
 
 			List<Square> squares = new ArrayList<>();
 			for (int i = 0; i < M; i++) {    //ввод квадратов
-				System.out.println((M + 1) + "square");
+				System.out.println((i + 1) + " square");
 
 				System.out.println("Left top point");
 				Point2D leftTop = getPoint();
@@ -61,28 +62,37 @@ public class Main {
 				squares.add(square);
 			}
 
-			double perimeters = 0;
-			double areas = 0;
-			for (Quadrangle quadrangle : quadrangles) {    // общие периметр и площадь
-				perimeters += quadrangle.getPerimeter();
-				areas += quadrangle.getArea();
-			}
-			double averagePerimeter = perimeters / quadrangles.size();    // средний перимтр
-			double averageArea = areas / quadrangles.size();    // средняя площадь
+			if (!quadrangles.isEmpty()) {
 
-			System.out.println("Average perimeter is " + f.format(averagePerimeter));
-			System.out.println("Average area is " + f.format(averageArea));
-
-			// поиск наименьшего квадрата[по площади]
-			Square minSquare = squares.get(0);// первый элемент в списке
-			for (Square square : squares) {
-				if (minSquare.getArea() > square.getArea()) {
-					minSquare = square;
+				double perimeters = 0;
+				double areas = 0;
+				for (Quadrangle quadrangle : quadrangles) {    // общие периметр и площадь
+					perimeters += quadrangle.getPerimeter();
+					areas += quadrangle.getArea();
 				}
+				double averagePerimeter = perimeters / quadrangles.size();    // средний перимтр
+				double averageArea = areas / quadrangles.size();    // средняя площадь
+
+				System.out.println("Average perimeter is " + f.format(averagePerimeter));
+				System.out.println("Average area is " + f.format(averageArea));
+			} else {
+				System.out.println("List of quadrangles is empty");
 			}
 
-			System.out.println("Min square");
-			minSquare.info();
+			if (!squares.isEmpty()) {
+				// поиск наименьшего квадрата[по площади]
+				Square minSquare = squares.get(0);// первый элемент в списке
+				for (Square square : squares) {
+					if (minSquare.getArea() > square.getArea()) {
+						minSquare = square;
+					}
+				}
+
+				System.out.println("Min square");
+				minSquare.info();
+			} else {
+				System.out.println("List of square is empty");
+			}
 
 			System.out.println("Repeat?yes/no");
 			if (scanner.nextLine().equals("no")) {
