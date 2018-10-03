@@ -28,6 +28,16 @@ public class Main {
 				String firstPolynomial = inputOne.getText();	// 1 выражение
 				String secondPolynomial = inputTwo.getText();	// 2 выражение
 
+				if (firstPolynomial.isEmpty()){
+					output.setText(secondPolynomial);
+					return;
+				}
+				if (secondPolynomial.isEmpty()){
+					output.setText(firstPolynomial);
+					return;
+				}
+
+
 				Map<String, Integer> firstParts = parse(firstPolynomial); // разделяет строку на выражения и коэффициенты перед ним
 				Map<String, Integer> secondParts = parse(secondPolynomial);
 
