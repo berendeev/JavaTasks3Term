@@ -15,7 +15,9 @@ public class Main {
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); // завершение при закритии
 
 		JPanel panel = new JPanel();	// контейнер
-		panel.setLayout(new GridLayout(4, 0, 0, 0));	// разметка
+		panel.setLayout(new GridLayout(5, 0, 0, 0));	// разметка
+
+		JLabel infoLabel = new JLabel("TEXT!TEXT!TEXT!TEXT!TEXT!TEXT!TEXT!TEXT!TEXT!TEXT!TEXT!TEXT!TEXT!TEXT!TEXT!");
 
 		TextField inputOne = new TextField("ab^3+a^3+2a^2-3");	// 1 текстовое коле
 		TextField inputTwo = new TextField("2ab^2+3a^3+1");		// 2 текстовое поле
@@ -61,6 +63,8 @@ public class Main {
 				output.setText(result);	//вывод результата
 			}
 		});
+
+		panel.add(infoLabel);
 
 		panel.add(inputOne);	// добавление на окно
 		panel.add(inputTwo);

@@ -1,21 +1,46 @@
 package var3.task3_1;
 
 import java.text.DecimalFormat;
+import java.util.Random;
+import java.util.Scanner;
 
 public class Main {
 	public static void main(String[] args) {
 		DecimalFormat f = new DecimalFormat("0.00");
+		Random r = new Random();
+		Scanner scanner = new Scanner(System.in);
 
-		Engineer engineer = new Engineer(40000); // создание инженера с зарплатой 40000
-		Worker worker = new Worker(210, 48); // рабочий с зп в час 210, 48 - базовые часы работы
-		Manager manager = new Manager(15000, 300); // мэнэджер
+		while (true) {
+			System.out.println("==================");
 
-		double engineerSalary = engineer.payroll(2500);    // расчет зп инженера с бонусом в 2500
-		double workerSalary = worker.payroll(51);        // рабочий, который отработал 51 час
-		double managerSalary = manager.payroll(4); // мэнэджер, который продал 4 товара
+			int startEngineerSalary = r.nextInt(100000);
+			Engineer engineer = new Engineer(startEngineerSalary);
 
-		System.out.println("Salary for engineer with bonus 2500 is " + f.format(engineerSalary) + " р.");
-		System.out.println("Salary for worker with 3 extra hours is " + f.format(workerSalary) + " р.");
-		System.out.println("Salary for manager with 4 sales is " + f.format(managerSalary) + " р.");
+			int startWorkerSalaryPerHour = r.nextInt(1000);
+			int startWorkerGeneralHour = r.nextInt(100);
+			Worker worker = new Worker(startWorkerSalaryPerHour, startWorkerGeneralHour);
+
+			int startManagerSalary = r.nextInt(50000);
+			int startManagerBonusPerSale = r.nextInt(1000);
+			Manager manager = new Manager(startManagerSalary, startManagerBonusPerSale);
+
+			int inputEngineerBonus = r.nextInt(10000);
+			double engineerSalary = engineer.payroll(inputEngineerBonus);
+
+			int inputWorkerHour = r.nextInt(100);
+			double workerSalary = worker.payroll(51);
+
+			int inputManagerSales = r.nextInt(20);
+			double managerSalary = manager.payroll(4);
+
+			System.out.println("Salary for engineer with bonus " + f.format(inputEngineerBonus) + " is " + f.format(engineerSalary) + " р.");
+			System.out.println("Salary for worker is " + f.format(workerSalary) + " р.");
+			System.out.println("Salary for manager with " + inputManagerSales + " sales is " + f.format(managerSalary) + " р.");
+
+			System.out.println("repeat?yes/no");
+			if (scanner.nextLine().equals("no")) {
+				return;
+			}
+		}
 	}
 }
