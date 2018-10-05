@@ -8,11 +8,18 @@ import java.util.Scanner;
 
 public class Main {
 	public static void main(String[] args) {
-		System.out.println("input string: ");		// вывод сооющения в консоль
-		Scanner scanner = new Scanner(System.in);	// сканнер необходим чтобы считывать с консоли
+		while(true) {
+			System.out.println("input string: ");        // вывод сооющения в консоль
+			Scanner scanner = new Scanner(System.in);    // сканнер необходим чтобы считывать с консоли
 
-		Str str = new Str(scanner.nextLine());		// создаем обьект класса Str в ноструктор[Str(scanner.nextLine())] передаем строку, которую считали с консоли[scanner.nextLine()]
+			Str str = new Str(scanner.nextLine());        // создаем обьект класса Str в ноструктор[Str(scanner.nextLine())] передаем строку, которую считали с консоли[scanner.nextLine()]
 
-		str.findAndPrint();							// вызываем метод у обьекта
+			str.findAndPrint();                            // вызываем метод у обьекта
+
+			System.out.println("repeat?yes/no");
+			if (scanner.nextLine().equals("no")){
+				return;
+			}
+		}
 	}
 }
