@@ -23,7 +23,7 @@ public class Main {
 			c.info();    // для просмотра результата выполнения строки выше
 
 			double f = a.scalarMultiplication(c);    // f = ac
-			System.out.println("f = " + f);        // вывод результата
+			System.out.printf("f = %.2f\n" , f);        // вывод результата[%.2f подставит вместо этого f, .2 - 2 знака после запятой f - float]
 
 			System.out.println("repeat?yes/no");
 			if (scanner.nextLine().equals("no")){

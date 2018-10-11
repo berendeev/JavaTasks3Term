@@ -28,15 +28,15 @@ public class Main {
 			double price;
 			int time = r.nextInt(1000);
 			price = parking.calculateRent(car, time);                    // вычисление платы для легковой машины
-			System.out.println("For car " + car.getModel() + " rent is " + price + "; Time : " + time);
+			System.out.printf("For car %s rent is %.2fp ; Time : %d\n", car.getModel(), price, time); //s-string f-float d-int
 
 			time = r.nextInt(1000);
 			price = parking.calculateRent(autotruck, time);            // вычисление платы для грузовой машины
-			System.out.println("For car " + autotruck.getModel() + " rent is " + price + "; Time : " + time);
+			System.out.printf("For car %s rent is %.2fp ; Time : %d\n", autotruck.getModel(), price, time);
 
 			time = r.nextInt(1000);
 			price = parking.calculateRent(municipalTransport, time);    // вычисление платы для муниципального транспорта
-			System.out.println("For car " + municipalTransport.getModel() + " rent is " + price + "; Time : " + time);
+			System.out.printf("For car %s rent is %.2fp ; Time : %d\n", municipalTransport.getModel(), price, time);
 
 			System.out.println("repeat?yes/no");
 			if (scanner.nextLine().equals("no")) {

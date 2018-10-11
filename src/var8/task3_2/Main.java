@@ -19,8 +19,6 @@ public class Main {
 			List<Circle> circles = new ArrayList<>(); //лист[или проще - список] для хранения окружностей
 			List<Cone> cones = new ArrayList<>(); // лист для хранения конусов
 
-
-
 			System.out.println("input count of circles");
 			int N = scanner.nextInt();    //в N считывается из потока ввода кол-во окружностей
 
@@ -60,8 +58,8 @@ public class Main {
 				}
 			}
 
-			System.out.println("Average area is " + averageArea);    //вывод средней площади
-			System.out.println("count circles less average is " + countLessAVG);    //вывод ко-ва < средней
+			System.out.printf("Average area is %.2f\n", averageArea);    //вывод средней площади[\n-перенос строки]
+			System.out.printf("count circles less average is %d\n", countLessAVG);    //вывод ко-ва < средней
 
 			//для конуса
 			// необходимо найти max по обьему, т.е. нужно сравнивать. Предпологаем что 1ый элемент в списке это конус с max обьемом
@@ -77,7 +75,7 @@ public class Main {
 
 			scanner.nextLine();
 			System.out.println("repeat?yes/no");
-			if (scanner.nextLine().equals("no")){
+			if (scanner.nextLine().equals("no")) {
 				return;
 			}
 		}
