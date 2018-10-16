@@ -75,8 +75,15 @@ public class Main {
 
 			scanner.nextLine();
 			System.out.println("repeat?yes/no");
-			if (scanner.nextLine().equals("no")) {
-				return;
+			while (true) {
+				String intention = scanner.nextLine();
+				if (intention.equals("no")) {
+					return;
+				}
+				if (intention.equals("yes")) {
+					break;
+				}
+				System.out.println("Wrong format...");
 			}
 		}
 

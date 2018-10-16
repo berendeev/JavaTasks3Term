@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class Main {
 	public static void main(String[] args) {
-		while(true) {
+		while (true) {
 			System.out.println("input string: ");        // вывод сооющения в консоль
 			Scanner scanner = new Scanner(System.in);    // сканнер необходим чтобы считывать с консоли
 
@@ -17,8 +17,15 @@ public class Main {
 			str.findAndPrint();                            // вызываем метод у обьекта
 
 			System.out.println("repeat?yes/no");
-			if (scanner.nextLine().equals("no")){
-				return;
+			while (true) {
+				String intention = scanner.nextLine();	// получает ответ пользователя
+				if (intention.equals("no")) {	// если нет
+					return;	// завершение программы
+				}
+				if (intention.equals("yes")) {	// если да
+					break;	// выход из вложенного цикла
+				}
+				System.out.println("Wrong format...");	// сработает если в строке не no и не yes, и вложенный цикл начнется с новой итерацией
 			}
 		}
 	}

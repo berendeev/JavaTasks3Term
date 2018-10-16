@@ -26,8 +26,15 @@ public class Main {
 			System.out.printf("f = %.2f\n" , f);        // вывод результата[%.2f подставит вместо этого f, .2 - 2 знака после запятой f - float]
 
 			System.out.println("repeat?yes/no");
-			if (scanner.nextLine().equals("no")){
-				return;
+			while (true) {
+				String intention = scanner.nextLine();
+				if (intention.equals("no")) {
+					return;
+				}
+				if (intention.equals("yes")) {
+					break;
+				}
+				System.out.println("Wrong format...");
 			}
 		}
 

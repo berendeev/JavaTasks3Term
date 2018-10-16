@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -63,6 +64,8 @@ public class Main extends Application {
 		});
 
 		borderPane.setBottom(button);	// добавляем кнопку вниз
+		Label label = new Label("TEXT HERE!TEXT HERE!TEXT HERE!TEXT HERE!TEXT HERE!");
+		borderPane.setTop(label);
 
 		Scene scene = new Scene(borderPane, 200, 200);	// создание и инициализация сцены. Сцена это рабочая область окна
 
