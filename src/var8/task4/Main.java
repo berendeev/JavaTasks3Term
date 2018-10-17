@@ -7,13 +7,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Collections;
 import java.util.Stack;
 
 
@@ -23,53 +22,75 @@ import java.util.Stack;
 	Vertical List View.
  */
 
-// java fx
+
 public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
-	}	// запускает метод в классе Application. подробнее гуглите javafx
+	}
 
 	@Override
-	public void start(Stage primaryStage) throws Exception {	// основной метод
-		Stack<String> first = new Stack<>();	// обьявление и инициализация первого стека
-		first.addAll(Arrays.asList("a", "b", "c", "d"));	// добавление в стэк элементов
+	public void start(Stage primaryStage) throws Exception {
+		Stack<TextField> first = new Stack<>();	// 1 стэк
+		Stack<TextField> tempStack = new Stack<>();	// временный(3ий)
+		Stack<TextField> second = new Stack<>(); // 2ой
+		for (int i = 0; i < 12; i++) {	// начальные значения
+			first.push(new TextField("A value 1-" + i));
+			second.push(new TextField("B value 2-" + i));
+		}
 
-		Stack<String> second = new Stack<>();		// второй стэк
-		second.addAll(Arrays.asList("e", "f", "g", "h"));
+		HBox hBox = new HBox();
 
-		HBox hBox = new HBox();		// HBox позволяет размещать элементы внутри себя горизонтально
+		ListView<TextField> firstListView = new ListView<>();
+		firstListView.getItems().setAll(first);
 
-		ListView<String> firstListView = new ListView<>();	// 1ый Vertical ListView
-		firstListView.getItems().setAll(first);		// добовляем все элементы из первого стэка
-
-		ListView<String> secondListView = new ListView<>();	// 2ой
+		ListView<TextField> secondListView = new ListView<>();
 		secondListView.getItems().setAll(second);
 
-		hBox.getChildren().add(firstListView);	// добавляем листы внутрь HBox
+		ListView<TextField> tempListView = new ListView<>();
+		tempListView.getItems().setAll(tempStack);
+
+		hBox.getChildren().add(firstListView);
+		hBox.getChildren().add(tempListView);
 		hBox.getChildren().add(secondListView);
 
-		BorderPane borderPane = new BorderPane();	// Необходим для размещения, так же как и HBox, но отличается способом рахмещения
-		borderPane.setCenter(hBox); // добавления HBox[и все что внутри него] в центр BorderPane
+		BorderPane borderPane = new BorderPane();
+		borderPane.setCenter(hBox);
 
-		Button button = new Button("click");	// создание кнопки
-		button.setOnAction(new EventHandler<ActionEvent>() {	// вешаем слушателя на кнопку, метод handle будет срабатывать при нажатии на кнопку
+		Button button = new Button("click");
+		button.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				List<String> temp = new ArrayList<>();	// создается новый лист для временного хранения данных
-				temp.addAll(firstListView.getItems());	// копирует элементы из первого ListView
-				firstListView.getItems().setAll(secondListView.getItems());	// изменение элементов первого ListView на элементы из второго
+				if (tempStack.empty()) {	// если временный стэк пуст ( 1 нажатие)
+					while (!first.empty()) {	// пока первый стэк не станет пустым
+						tempStack.push(first.pop());	// перекладывает из первого стэка во временный; pop - получить верхгий(1ый) элемент и удалить из стэка, push затолкнуть в стэк
+					}
+				} else {	// если во временном стэке чтото есть (2ое нажатие)
+					while (!second.empty()) {	// перекладывает в первый элементы из 2го
+						first.push(second.pop());
+					}
+					Collections.reverse(first);	// переворачивает элементы в 1ом стэке
 
-				secondListView.getItems().setAll(temp);	// во 2ой записываются элементы из temp[т.е. то, что было в первом ListView]
+					while (!tempStack.empty()) {	// перекладывает из временного во 2ой
+						second.push(tempStack.pop());
+					}
+
+				}
+				firstListView.getItems().setAll(first);	// обновляет данные в ListView
+				tempListView.getItems().setAll(tempStack);
+				secondListView.getItems().setAll(second);
 			}
 		});
 
-		borderPane.setBottom(button);	// добавляем кнопку вниз
-		Label label = new Label("TEXT HERE!TEXT HERE!TEXT HERE!TEXT HERE!TEXT HERE!");
+		borderPane.setBottom(button);
+		Label label = new Label("Задание 5\n" +
+				"Задать два стека, поменять информацию местами. Отображать процесс вычислений по нажатию кнопки с помощью элементов\n" +
+				"Vertical List View.");
 		borderPane.setTop(label);
 
-		Scene scene = new Scene(borderPane, 200, 200);	// создание и инициализация сцены. Сцена это рабочая область окна
+		Scene scene = new Scene(borderPane);
 
-		primaryStage.setScene(scene);	// устанавливается рабочая область в окне
-		primaryStage.show();	// показать окно
+		primaryStage.setScene(scene);
+		primaryStage.sizeToScene();
+		primaryStage.show();
 	}
 }
